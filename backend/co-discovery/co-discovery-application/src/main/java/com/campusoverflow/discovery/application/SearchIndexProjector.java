@@ -35,11 +35,7 @@ public class SearchIndexProjector {
     }
 
     private boolean firstTime(IntegrationEvent e) {
-        if (processed.alreadyProcessed(e.eventId(), CONSUMER)) {
-            return false;
-        }
-        processed.markProcessed(e.eventId(), CONSUMER);
-        return true;
+        return processed.markProcessed(e.eventId(), CONSUMER);
     }
 
     @EventListener

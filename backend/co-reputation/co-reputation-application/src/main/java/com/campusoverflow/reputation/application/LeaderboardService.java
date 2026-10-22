@@ -36,11 +36,10 @@ public class LeaderboardService {
     @EventListener
     @Transactional
     public void on(ReputationChangedEvent e) {
-        if (processed.alreadyProcessed(e.eventId(), "leaderboard")) {
+        if (!processed.markProcessed(e.eventId(), "leaderboard")) {
             return;
         }
         store.increment(e.userId(), e.delta(), e.occurredAt());
-        processed.markProcessed(e.eventId(), "leaderboard");
     }
 
     @Transactional(readOnly = true)

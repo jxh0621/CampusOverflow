@@ -93,7 +93,7 @@ public class NotificationProjector {
     @EventListener
     @Transactional
     public void on(BadgeAwardedEvent e) {
-        String title = "恭喜获得徽章：" + e.badgeType();
+        String title = "恭喜获得徽章：" + e.badgeName();
         notify(e.userId(), NotificationType.BADGE_AWARDED, title,
                 "/profile/" + e.userId(), e.eventId(), e.occurredAt());
     }

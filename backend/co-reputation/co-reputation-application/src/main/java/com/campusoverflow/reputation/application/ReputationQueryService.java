@@ -63,7 +63,7 @@ public class ReputationQueryService {
 
     private ReputationProfileView.BadgeView toBadgeView(BadgeAward award) {
         BadgeType type = award.type();
-        return new ReputationProfileView.BadgeView(type.name(), type.label(), type.description(),
+        return new ReputationProfileView.BadgeView(type.name(), type.displayName(), type.description(),
                 award.awardedAt());
     }
 

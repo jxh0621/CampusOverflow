@@ -31,6 +31,7 @@ public class BadgeService {
             return;
         }
         badges.award(new BadgeAward(userId, type, clock.instant()));
-        events.publish(new BadgeAwardedEvent(EventIds.next(), clock.instant(), userId, type.name()));
+        events.publish(new BadgeAwardedEvent(EventIds.next(), clock.instant(), userId, type.name(),
+                type.displayName()));
     }
 }
