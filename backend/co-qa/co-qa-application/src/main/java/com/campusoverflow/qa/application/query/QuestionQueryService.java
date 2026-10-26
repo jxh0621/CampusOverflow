@@ -81,6 +81,7 @@ public class QuestionQueryService {
             List<Long> answerIds = answerRows.stream().map(AnswerRow::id).toList();
             myVotes = readModel.findMyVotes(actorOrNull.userId(), questionId, answerIds);
         }
+        final Map<String, Integer> userVotes = myVotes;
 
         AuthorView questionAuthor = AuthorView.of(row.authorId(), users.get(row.authorId()));
         CourseRefView course = row.courseId() != null
@@ -98,7 +99,7 @@ public class QuestionQueryService {
             AuthorView answerAuthor = AuthorView.of(ar.authorId(), users.get(ar.authorId()));
             AuthorView endorsed = ar.endorsedBy() != null
                     ? AuthorView.of(ar.endorsedBy(), users.get(ar.endorsedBy())) : null;
-            int myAnswerVote = myVotes.getOrDefault("ANSWER:" + ar.id(), 0);
+            int myAnswerVote = userVotes.getOrDefault("ANSWER:" + ar.id(), 0);
             boolean canEditAnswer = actorOrNull != null
                     && (actorOrNull.userId() == ar.authorId() || isManager(actorOrNull, row.courseId()));
             List<CommentView> answerComments = buildComments(commentRows.stream()
