@@ -53,7 +53,7 @@ public class VoteService {
         }
         Target target = resolve(type, targetId);
         if (actor.userId() == target.authorId) {
-            throw new BusinessRuleException("QA-2102", "不能给自己的内容投票");
+            throw new BusinessRuleException("QA-1015", "不能给自己的内容投票");
         }
 
         Optional<Vote> existing = votes.find(actor.userId(), type, targetId);
