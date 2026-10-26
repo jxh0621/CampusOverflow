@@ -1,4 +1,4 @@
-﻿package com.campusoverflow.reputation.application;
+package com.campusoverflow.reputation.application;
 
 import com.campusoverflow.identity.api.IdentityApi;
 import com.campusoverflow.identity.api.UserSummary;
