@@ -56,13 +56,13 @@ public class QuestionCommandService {
     public long post(Actor actor, PostQuestionCommand cmd) {
         Title title = new Title(cmd.title());
         MarkdownBody body = MarkdownBody.ofQuestion(cmd.body());
-        Tags tags = Tags.of(cmd.tags());
-        Question question = Question.post(actor.userId(), cmd.courseId(), title, body, tags, clock.instant());
+        Tags questionTags = Tags.of(cmd.tags());
+        Question question = Question.post(actor.userId(), cmd.courseId(), title, body, questionTags, clock.instant());
         question = questions.save(question);
-        tags.adjustUsage(tags.names(), 1);
+        tags.adjustUsage(questionTags.names(), 1);
         String plainText = renderer.toPlainText(body.value(), PLAIN_TEXT_FOR_INDEX);
         events.publish(new QuestionPostedEvent(EventIds.next(), clock.instant(), question.id(), actor.userId(),
-                cmd.courseId(), title.value(), plainText, tags.names()));
+                cmd.courseId(), title.value(), plainText, questionTags.names()));
         audit.record("QUESTION_POSTED", actor.userId(), "QUESTION", String.valueOf(question.id()), null);
         listCache.invalidateAll();
         return question.id();
