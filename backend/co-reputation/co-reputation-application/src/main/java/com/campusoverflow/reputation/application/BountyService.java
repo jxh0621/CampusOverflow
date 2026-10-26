@@ -65,7 +65,7 @@ public class BountyService {
         Bounty bounty = Bounty.open(questionId, !question.deleted(), actor, manages, points, days, now);
         ReputationAccount sponsor = accounts.findByUserId(actor.userId())
                 .orElseGet(() -> ReputationAccount.open(actor.userId(),
-                        ReputationRulebook.initialPoints(actor.role()))));
+                        ReputationRulebook.initialPoints(actor.role())));
         sponsor.freezePoints(points);
         accounts.save(sponsor);
         bounty = bounties.save(bounty);
