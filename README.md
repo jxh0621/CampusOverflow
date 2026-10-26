@@ -96,3 +96,8 @@ cd ../frontend && npm install && npm run dev      # http://localhost:5173
 | 中文搜索没结果 | 必须用 compose 里的 MySQL（已配置 `ngram_token_size=2`），自建库请对照参数 |
 | 事件重复导致加分两次 | 消费端必须幂等：账本唯一键 `(event_id, user_id, reason)` 或 `processed_event` 表 |
 | 提交后 CI 红 | 先本地跑 `mvn verify`，再推送；不要把红的分支合并到 `main` |
+
+## 团队成员
+
+- jxh0621（组长）：Q&A领域与应用服务、权限及事件编排
+- YUYUzi-0221：声誉与发现模块、前端联调
