@@ -86,4 +86,11 @@ export const api = {
   courses: () => get<{ id: number; code: string; name: string; term: string }[]>('/v1/courses'),
   myCourses: () => get<{ id: number; code: string; name: string; term: string }[]>('/v1/courses/mine'),
   joinCourse: (code: string) => request<void>('POST', '/v1/courses/join', { code }),
+
+  updateProfile: (body: { college?: string; className?: string }) =>
+    request<void>('PUT', '/v1/auth/me', body),
+  adminUsers: () => get<{ id: number; username: string; displayName: string; verified: boolean; role: string }[]>('/v1/admin/users'),
+  verifyUser: (userId: number) => request<void>('POST', `/v1/admin/users/${userId}/verify`),
+  createStaff: (body: { username: string; displayName: string; email: string; role: string; department: string }) =>
+    request<{ id: number }>('POST', '/v1/admin/users', body),
 };

@@ -71,3 +71,35 @@ article h1 { font-size: 24px; margin-bottom: 4px; }
 .plain li { padding: 6px 0; border-bottom: 1px solid var(--line); }
 .muted { color: var(--muted); }
 .error { color: var(--danger); }
+.ok { color: var(--accent); }
+.err { color: var(--danger); }
+
+/* Markdown 编辑器预览 */
+.editor-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.editor-row textarea { min-height: 200px; }
+.preview-pane { background: #f6f8fa; border-radius: 6px; padding: 12px; min-height: 200px; }
+.preview-pane h4 { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.preview-pane p { margin: 4px 0; white-space: pre-wrap; }
+
+/* 悬赏表单 */
+.bounty-form { background: #fff8e6; border: 1px solid #f0d89a; border-radius: 6px; padding: 12px; margin-top: 12px; }
+.bounty-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; margin-bottom: 8px; }
+.bounty-form .row { display: flex; gap: 8px; }
+
+/* 课程列表 */
+.card-list { list-style: none; padding: 0; margin: 0; }
+.card-list li { padding: 10px 14px; background: #fff; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 8px; }
+.card-list li:hover { border-color: var(--brand); }
+
+/* 加入课程栏 */
+.join-bar { display: flex; gap: 8px; margin-bottom: 12px; }
+.join-bar input { flex: 1; }
+
+/* 管理页表格 */
+.table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 12px; }
+.table th, .table td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+.table th { background: #f6f8fa; }
+
+/* 骨架屏动画 */
+@keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: calc(200px + 100%) 0; } }
+.skeleton { background: linear-gradient(90deg, #f0f1f3 25%, #e2e4e7 50%, #f0f1f3 75%); background-size: 400px 100%; animation: shimmer 1.4s infinite; border-radius: 4px; }

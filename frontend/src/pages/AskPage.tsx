@@ -33,7 +33,15 @@ export function AskPage() {
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
       </label>
       <label>正文（Markdown，至少 20 字：说明你尝试过什么、卡在哪里）
-        <textarea rows={12} value={body} onChange={(e) => setBody(e.target.value)} />
+        <div className="editor-row">
+          <textarea rows={12} value={body} onChange={(e) => setBody(e.target.value)} />
+          <div className="preview-pane">
+            <h4>预览</h4>
+            <div className="markdown-preview">
+              {body ? body.split('\n').map((line, i) => <p key={i}>{line || ' '}</p>) : <span className="muted">输入内容后这里会显示预览</span>}
+            </div>
+          </div>
+        </div>
       </label>
       <label>标签（1–5 个，用空格或逗号分隔）
         <input value={tags} onChange={(e) => setTags(e.target.value)} placeholder="数据结构 红黑树" />

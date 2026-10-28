@@ -48,13 +48,7 @@ export function QuestionDetailPage() {
             <div dangerouslySetInnerHTML={{ __html: q.bodyHtml }} />
             <div className="tagrow">{q.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
             <CommentList comments={q.comments} targetType="QUESTION" targetId={q.id} onDone={load} canComment={!!me} />
-            {canManage && (
-              <button className="link" onClick={() => {
-                const points = Number(prompt('悬赏积分（10–500）', '50'));
-                if (points) act(() => api.bounty(q.id, points, 7));
-              }}>发起悬赏
-              </button>
-            )}
+            {canManage && <BountyForm questionId={q.id} onDone={load} />}
           </div>
         </div>
 
@@ -135,6 +129,41 @@ function CommentList({ comments, targetType, targetId, onDone, canComment }: {
           </button>
         </div>
       ) : <button className="link" onClick={() => setOpen(true)}>添加评论</button>)}
+    </div>
+  );
+}
+
+function BountyForm({ questionId, onDone }: { questionId: number; onDone: () => void }) {
+  const [points, setPoints] = useState(50);
+  const [days, setDays] = useState(7);
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+
+  if (!open) {
+    return <button className="link" onClick={() => setOpen(true)}>发起悬赏</button>;
+  }
+
+  return (
+    <div className="bounty-form">
+      <label>悬赏积分（10–500）
+        <input type="number" min={10} max={500} value={points} onChange={(e) => setPoints(Number(e.target.value))} />
+      </label>
+      <label>有效天数（1–14）
+        <input type="number" min={1} max={14} value={days} onChange={(e) => setDays(Number(e.target.value))} />
+      </label>
+      {error && <p className="err">{error}</p>}
+      <div className="row">
+        <button className="primary" onClick={async () => {
+          try {
+            await api.bounty(questionId, points, days);
+            setOpen(false);
+            onDone();
+          } catch (e: any) {
+            setError(e.message);
+          }
+        }}>确认发起</button>
+        <button onClick={() => setOpen(false)}>取消</button>
+      </div>
     </div>
   );
 }
