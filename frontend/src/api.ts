@@ -82,4 +82,8 @@ export const api = {
   notifications: () => get<Page<Notification>>('/v1/notifications'),
   unreadCount: () => get<{ count: number }>('/v1/notifications/unread-count'),
   readAll: () => request<{ updated: number }>('POST', '/v1/notifications/read-all', {}),
+
+  courses: () => get<{ id: number; code: string; name: string; term: string }[]>('/v1/courses'),
+  myCourses: () => get<{ id: number; code: string; name: string; term: string }[]>('/v1/courses/mine'),
+  joinCourse: (code: string) => request<void>('POST', '/v1/courses/join', { code }),
 };
