@@ -72,12 +72,19 @@ public class QuestionCommandService {
     public void edit(Actor actor, long questionId, EditQuestionCommand cmd) {
         Question question = load(questionId);
         boolean manages = identity.canManageCourse(actor.userId(), question.courseId());
+        List<String> oldTagNames = question.tags().names();
         Title newTitle = new Title(cmd.title());
         MarkdownBody newBody = MarkdownBody.ofQuestion(cmd.body());
         Tags newTags = Tags.of(cmd.tags());
         question.edit(actor, manages, newTitle, newBody, newTags, clock.instant());
         questions.save(question);
-        tags.adjustUsage(newTags.names(), 1);
+        // 标签差量：移除的 -1、新增的 +1，保留不变的不动
+        Set<String> oldSet = new HashSet<>(oldTagNames);
+        Set<String> newSet = new HashSet<>(newTags.names());
+        List<String> removed = oldSet.stream().filter(t -> !newSet.contains(t)).toList();
+        List<String> added = newSet.stream().filter(t -> !oldSet.contains(t)).toList();
+        if (!removed.isEmpty()) tags.adjustUsage(removed, -1);
+        if (!added.isEmpty()) tags.adjustUsage(added, 1);
         String plainText = renderer.toPlainText(newBody.value(), PLAIN_TEXT_FOR_INDEX);
         events.publish(new QuestionEditedEvent(EventIds.next(), clock.instant(), questionId, newTitle.value(),
                 plainText, newTags.names()));
@@ -88,8 +95,10 @@ public class QuestionCommandService {
     public void delete(Actor actor, long questionId) {
         Question question = load(questionId);
         boolean manages = identity.canManageCourse(actor.userId(), question.courseId());
+        List<String> tagNames = question.tags().names();
         question.softDelete(actor, manages, clock.instant());
         questions.save(question);
+        tags.adjustUsage(tagNames, -1);
         events.publish(new ContentDeletedEvent(EventIds.next(), clock.instant(), "QUESTION", questionId,
                 questionId));
         audit.record("QUESTION_DELETED", actor.userId(), "QUESTION", String.valueOf(questionId), null);

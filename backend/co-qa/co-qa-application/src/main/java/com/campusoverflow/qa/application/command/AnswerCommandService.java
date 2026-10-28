@@ -74,8 +74,10 @@ public class AnswerCommandService {
         boolean accepted = question.acceptedAnswerId() != null && question.isAccepted(answerId);
         answer.softDelete(actor, manages, accepted, clock.instant());
         answers.save(answer);
+        questions.adjustAnswerCount(answer.questionId(), -1);
         events.publish(new ContentDeletedEvent(EventIds.next(), clock.instant(), "ANSWER", answerId,
                 answer.questionId()));
+        audit.record("ANSWER_DELETED", actor.userId(), "ANSWER", String.valueOf(answerId), null);
         listCache.invalidateAll();
     }
 

@@ -49,7 +49,7 @@ public class VoteService {
     @Transactional
     public VoteResult cast(Actor actor, TargetType type, long targetId, int value) {
         if (value != -1 && value != 0 && value != 1) {
-            throw new BusinessRuleException("QA-2101", "投票值只能是 -1、0 或 1");
+            throw new BusinessRuleException("QA-1014", "投票值只能是 -1、0 或 1");
         }
         Target target = resolve(type, targetId);
         if (actor.userId() == target.authorId) {
