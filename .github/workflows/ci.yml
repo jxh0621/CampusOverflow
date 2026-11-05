@@ -4,8 +4,15 @@ name: CI
 on:
   push:
     branches: [main, develop, "sprint/**"]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.github/ISSUE_TEMPLATE/**'
   pull_request:
     branches: [main, develop]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
 
 jobs:
   backend:
