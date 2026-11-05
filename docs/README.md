@@ -16,10 +16,9 @@
 | [backlog/user-story-map.md](backlog/user-story-map.md) | 用户故事地图 |
 | [backlog/product-backlog.md](backlog/product-backlog.md) | Product Backlog（39条已排序） |
 | [backlog/stories/](backlog/stories/) | Gherkin验收标准（8个.feature文件） |
-| [scrum/sprint-1-backlog.md](scrum/sprint-1-backlog.md) | Sprint 1 任务分解与负责人分配 |
-| [scrum/sprint-0.md](scrum/sprint-0.md) | Sprint 0 记录 |
-| [scrum/sprint-1.md](scrum/sprint-1.md) | Sprint 1 记录 |
-| [scrum/sprint-2.md](scrum/sprint-2.md) | Sprint 2 记录 |
+| [scrum/sprint-1-backlog.md](scrum/sprint-1-backlog.md) | Sprint 1 任务分解与负责人分配（15个任务） |
+| [scrum/sprint-2-backlog.md](scrum/sprint-2-backlog.md) | Sprint 2 任务分解与负责人分配（14个任务） |
+| [scrum/sprint-3-backlog.md](scrum/sprint-3-backlog.md) | Sprint 3 任务分解与负责人分配（12个任务） |
 
 ## Lab 3：领域驱动设计事件风暴
 
@@ -30,6 +29,16 @@
 | [ddd/aggregates.md](ddd/aggregates.md) | 聚合识别清单（不变式、仓储） |
 | [ddd/统一语言词汇表.md](ddd/统一语言词汇表.md) | 统一语言术语表 |
 | [ddd/事件目录.md](ddd/事件目录.md) | 领域事件目录 |
+
+## Sprint 记录
+
+| 文件 | 说明 |
+|---|---|
+| [scrum/sprint-0.md](scrum/sprint-0.md) | Sprint 0 启动与基础设施 |
+| [scrum/sprint-1.md](scrum/sprint-1.md) | Sprint 1 问答闭环记录 |
+| [scrum/sprint-2.md](scrum/sprint-2.md) | Sprint 2 声誉激励记录 |
+| [scrum/sprint-3.md](scrum/sprint-3.md) | Sprint 3 内容发现记录 |
+| [scrum/sprint-4.md](scrum/sprint-4.md) | Sprint 4 稳定化与发布 |
 
 ## ADR 架构决策记录
 
