@@ -1,7 +1,23 @@
-# CampusOverflow · 学生初始框架（Java / Spring Boot 3）
+# CampusOverflow · 校园问答平台
 
-这是《软件工程》贯穿项目的**起始代码**。整体骨架、构建脚本、部署与 CI 已经就位，
-**四个限界上下文中的 Identity（身份与认证）是完整的参考实现**，其余三个上下文的核心业务留给你们按 Sprint 实现。
+[![version](https://img.shields.io/badge/version-v1.0.0-brightgreen.svg)](https://github.com/jxh0621/CampusOverflow/releases/tag/v1.0.0)
+[![tests](https://img.shields.io/badge/tests-61%20passing-blue.svg)]()
+[![java](https://img.shields.io/badge/Java-21-orange.svg)]()
+[![react](https://img.shields.io/badge/React-18-61dafb.svg)]()
+
+> 《软件工程》课程贯穿项目 · 模块化单体 × 领域驱动设计 × Scrum
+
+## 项目状态：v1.0.0 已发布
+
+✅ 107 个 TODO 方法全部实现
+✅ 61 个单元测试全绿
+✅ 前端 9 个页面全链路闭环
+✅ DDD 设计文档 + Scrum 记录 + ADR 001-008
+
+---
+
+这是《软件工程》贯穿项目的**完成版代码**。整体骨架、构建脚本、部署与 CI 已经就位，
+四个限界上下文（Identity / Q&A / Reputation / Discovery）全部实现完毕。
 
 现在克隆下来直接跑 `mvn test`，你会看到**大量失败的测试**——这不是环境坏了，这是你们这学期的需求说明书。
 
@@ -101,3 +117,12 @@ cd ../frontend && npm install && npm run dev      # http://localhost:5173
 
 - jxh0621（组长）：Q&A领域与应用服务、权限及事件编排
 - YUYUzi-0221：声誉与发现模块、前端联调
+
+## 演示账号
+
+| 角色 | 用户名 | 密码 |
+|---|---|---|
+| 管理员 | admin01 | Campus2026 |
+| 教师 | T2001 | Campus2026 |
+| 学生（小明） | 2023001 | Campus2026 |
+| 学生（小红） | 2023002 | Campus2026 |
