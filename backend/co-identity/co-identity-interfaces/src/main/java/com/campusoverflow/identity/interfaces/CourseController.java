@@ -77,7 +77,18 @@ public class CourseController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "加入课程（按课程代码）")
+    @PostMapping("/join")
+    public ResponseEntity<Void> joinByCode(@Parameter(hidden = true) Actor actor,
+                                          @Valid @RequestBody JoinCourseRequest req) {
+        courses.joinByCode(actor, req.code());
+        return ResponseEntity.noContent().build();
+    }
+
     public record CreateCourseRequest(@NotBlank String code, @NotBlank String name, @NotBlank String term) {
+    }
+
+    public record JoinCourseRequest(@NotBlank String code) {
     }
 
     public record AssignRoleRequest(@NotNull CourseRole role) {

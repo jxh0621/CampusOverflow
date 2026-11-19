@@ -52,6 +52,18 @@ public class CourseService {
         courses.saveMember(CourseMember.student(courseId, actor.userId(), clock.instant()));
     }
 
+    @Transactional
+    public void joinByCode(Actor actor, String code) {
+        Course course = courses.findAll().stream()
+                .filter(c -> c.code().equalsIgnoreCase(code.trim()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("ID-4002", "课程不存在: " + code));
+        if (courses.findMember(course.id(), actor.userId()).isPresent()) {
+            throw new ConflictException("ID-2005", "你已加入该课程");
+        }
+        courses.saveMember(CourseMember.student(course.id(), actor.userId(), clock.instant()));
+    }
+
     /** 课程教师或管理员调整成员角色（例如任命助教）。 */
     @Transactional
     public void assignRole(Actor actor, long courseId, long userId, CourseRole role) {
