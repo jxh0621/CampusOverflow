@@ -16,7 +16,7 @@ docker compose -f deploy/docker-compose.yml up -d mysql redis
 cd backend
 mvn clean test
 
-# 3. 启动后端
+# 3. 启动后端（dev 本地开发；改为 demo 可自动播种演示账号与示例问答）
 mvn spring-boot:run -pl co-bootstrap -Dspring-boot.run.profiles=dev
 
 # 4. 前端
@@ -34,11 +34,11 @@ npm run dev
 ## 教师/管理员测试账号
 ```sql
 -- 进入容器
-docker exec -it co-mysql mysql -ucampus_dev -pcampus_dev_pwd campus_overflow
+docker exec -it co-mysql mysql -ucampus -pcampus_dev_pwd campus_overflow
 -- 提升为教师
-UPDATE co_identity..id_user SET role = 'TEACHER', verified = TRUE WHERE username = 'T2001';
+UPDATE id_user SET role = 'TEACHER', verified = TRUE WHERE username = 'T2001';
 -- 提升为管理员
-UPDATE co_identity..id_user SET role = 'ADMIN', verified = TRUE WHERE username = 'admin01';
+UPDATE id_user SET role = 'ADMIN', verified = TRUE WHERE username = 'admin01';
 ```
 
 ## 分支策略

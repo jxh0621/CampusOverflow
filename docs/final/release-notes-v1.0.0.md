@@ -31,7 +31,7 @@
 
 ## 技术架构
 - 模块化单体 × 领域驱动设计
-- 6个限界上下文，27个Maven模块
+- 4 个业务限界上下文 + 共享内核 + 启动装配，27 个 Maven 模块
 - 事务性发件箱模式（事件最终一致）
 - 事件幂等处理（账本唯一键）
 - Docker Compose 一键部署
@@ -42,9 +42,9 @@
 # 1. 启动中间件
 docker-compose up -d mysql redis
 
-# 2. 启动后端
+# 2. 启动后端（demo profile 自动播种演示账号与示例问答）
 cd backend
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -Dspring-boot.run.profiles=demo
 
 # 3. 启动前端
 cd ../frontend
@@ -57,9 +57,17 @@ npm install && npm run dev
 ```
 
 ## 演示账号
-- 管理员：admin01 / Campus2026
-- 教师：T2001 / Campus2026
-- 学生：2023001 / Campus2026（小明）
+
+密码统一为 `Campus2026`：
+
+| 角色 | 用户名 | 显示名 |
+|---|---|---|
+| 管理员 | admin01 | 系统管理员 |
+| 教师 | T2001 | 王老师 |
+| 助教 | TA3001 | 李助教 |
+| 学生 | 2023001 | 小明 |
+| 学生 | 2023002 | 小红 |
+| 学生 | 2023003 | 小刚 |
 
 ## 已知问题
 - Grafana 面板未配置（仅有 Prometheus 指标）
