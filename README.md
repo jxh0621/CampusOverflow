@@ -1,7 +1,8 @@
 # CampusOverflow · 校园问答平台
 
-[![version](https://img.shields.io/badge/version-v1.0.0-brightgreen.svg)](https://github.com/jxh0621/CampusOverflow/releases/tag/v1.0.0)
-[![tests](https://img.shields.io/badge/tests-61%20passing-blue.svg)]()
+[![CI](https://github.com/jxh0621/CampusOverflow/actions/workflows/ci.yml/badge.svg)](https://github.com/jxh0621/CampusOverflow/actions/workflows/ci.yml)
+[![version](https://img.shields.io/badge/version-v1.0.0-brightgreen.svg)](https://github.com/jxh0621/CampusOverflow/releases/latest)
+[![tests](https://img.shields.io/badge/unit%20tests-61%20passing-blue.svg)]()
 [![java](https://img.shields.io/badge/Java-21-orange.svg)]()
 [![react](https://img.shields.io/badge/React-18-61dafb.svg)]()
 
